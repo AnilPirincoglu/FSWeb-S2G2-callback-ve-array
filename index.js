@@ -77,7 +77,7 @@ function Kazananlar(baseData, getFinals) {
 	return winners;
 }
 
-console.log(Kazananlar(fifaData, Finaller));
+//console.log(Kazananlar(fifaData, Finaller));
 
 /*  Görev 5: 
 	Bir higher-order fonksiyonu olan YillaraGoreKazananlar isimli fonksiyona aşağıdakileri uygulayın:
@@ -90,12 +90,20 @@ console.log(Kazananlar(fifaData, Finaller));
 	💡 İPUCU: her cümlenin adım 4'te belirtilen cümleyle birebir aynı olması gerekmektedir.
 */
 
-function YillaraGoreKazananlar(/* kodlar buraya */) {
+function YillaraGoreKazananlar(basedata, getFinals, getTournamentYears, getWinners) {
 
-	/* kodlar buraya */
+	const years = getTournamentYears(basedata, getFinals);
+	const winners = getWinners(basedata, getFinals);
 
+	const result = [];
+
+	for (let i = 0; i < years.length; i++) {
+		result.push(`${years[i]} yılında, ${winners[i]} dünya kupasını kazandı!`);
+	}
+	return result;
 }
 
+console.log(YillaraGoreKazananlar(fifaData,Finaller,Yillar,Kazananlar));
 
 /*  Görev 6: 
 	Bir higher order fonksiyonu olan `OrtalamaGolSayisi` isimli fonksiyona aşağıdakileri uygulayın: 
