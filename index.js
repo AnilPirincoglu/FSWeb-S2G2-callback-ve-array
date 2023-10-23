@@ -5,15 +5,19 @@ const { fifaData } = require('./fifa.js')
 	Verilen datayı parçalayarak aşağıdaki verileri (console.log-ing) elde ederek pratik yapın. 
 	
 	💡 İPUCU: Öncelikle datayı filtrelemek isteyebilirsiniz */
+	const final2014 = fifaData.filter((year) => {return year.Year == 2014 && year.Stage == "Final"});
 
 //(a) 2014 Dünya kupası Finali Evsahibi takım ismi (dizide "Home Team Name" anahtarı)
+	console.log(final2014[0]["Home Team Name"]);
 
 //(b) 2014 Dünya kupası Finali Deplasman takım ismi  (dizide "Away Team Name" anahtarı)
+	console.log(final2014[0]["Away Team Name"]);
 
 //(c) 2014 Dünya kupası finali Ev sahibi takım golleri (dizide "Home Team Goals" anahtarı)
+	console.log(final2014[0]["Home Team Goals"]);
 
 //(d)2014 Dünya kupası finali Deplasman takım golleri  (dizide "Away Team Goals" anahtarı)
-
+	console.log(final2014[0]["Away Team Goals"]);
 //(e) 2014 Dünya kupası finali kazananı*/
 
 
@@ -25,9 +29,11 @@ const { fifaData } = require('./fifa.js')
 	💡 İPUCU - verilen data içindeki nesnelerin(objects) "Stage" anahtarına bakmalısınız
 */
 
-function Finaller(/* kodlar buraya */) {
+function Finaller(baseData) {
 	
-    /* kodlar buraya */
+	const finalMaches = baseData.filter((finals) => {return finals.Stage == 'Final'})
+
+    return finalMaches ;
 }
 
 
