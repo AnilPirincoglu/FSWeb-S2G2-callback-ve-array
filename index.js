@@ -65,12 +65,12 @@ function Kazananlar(baseData, getFinals) {
 
 	const finalMaches = getFinals(baseData);
 
-	function winner(arr) {
-		if (arr["Home Team Goals"] > arr["Away Team Goals"]) {
-			return arr["Home Team Name"]
+	function winner(item) {
+		if (item["Home Team Goals"] > item["Away Team Goals"]) {
+			return item["Home Team Name"]
 		}
 		else {
-			return arr["Away Team Name"];
+			return item["Away Team Name"];
 		}
 	}
 	const winners = finalMaches.map(winner);
@@ -118,19 +118,18 @@ function YillaraGoreKazananlar(basedata, getFinals, getTournamentYears, getWinne
 	💡 İPUCU: .reduce, .toFixed (dizilim(syntax) için MDN'ye bakın) kullan, ve bunu 2 adımda yapın) 
 	
 */
-//getFinals=(basedata)=>{}
+
 function OrtalamaGolSayisi(getFinals) {
 
 	const finalMaches = getFinals;
-	
+
 	const goalAvarage = (finalMaches.reduce((total, goal) => {
 		return total + goal["Away Team Goals"] + goal["Home Team Goals"]
 	}, 0) / finalMaches.length).toFixed(2);
 
 	return goalAvarage;
 }
-console.log(OrtalamaGolSayisi(Finaller(fifaData)));
-//OrtalamaGolSayisi(Finaller(fifaData));
+//console.log(OrtalamaGolSayisi(Finaller(fifaData)));
 
 /// EKSTRA ÇALIŞMALAR ///
 
@@ -140,13 +139,24 @@ console.log(OrtalamaGolSayisi(Finaller(fifaData)));
 	İpucu: "takım kısaltmaları" (team initials) için datada araştırma yapın!
 İpucu: `.reduce` Kullanın*/
 
-function UlkelerinKazanmaSayilari(/* kodlar buraya */) {
+function UlkelerinKazanmaSayilari(baseData, teamInıtials) {
 
-	/* kodlar buraya */
+	const finalMaches = Finaller(baseData);
 
+	function winner(item) {
+		if (item["Home Team Goals"] > item["Away Team Goals"]) {
+			return item["Home Team Initials"]
+		}
+		else {
+			return item["Away Team Initials"];
+		}
+	}
+	const winners = finalMaches.map(winner);
+
+	return winners.reduce((total, init) => {return total + Number(init === teamInıtials)}, 0);
 }
 
-
+//console.log(UlkelerinKazanmaSayilari(fifaData , "BRA"));
 
 /*  BONUS 2:  
 EnCokGolAtan() isminde bir fonksiyon yazın, `data` yı parametre olarak alsın ve Dünya kupası finallerinde en çok gol atan takımı döndürsün */
