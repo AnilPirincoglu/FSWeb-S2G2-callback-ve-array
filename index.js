@@ -31,7 +31,7 @@ const final2014 = fifaData.filter((year) => { return year.Year == 2014 && year.S
 
 function Finaller(baseData) {
 
-	const finalMaches = baseData.filter((finals) => { return finals.Stage == 'Final' })
+	const finalMaches = baseData.filter((finals) => { return finals.Stage == 'Final' });
 
 	return finalMaches;
 }
@@ -103,7 +103,7 @@ function YillaraGoreKazananlar(basedata, getFinals, getTournamentYears, getWinne
 	return result;
 }
 
-console.log(YillaraGoreKazananlar(fifaData,Finaller,Yillar,Kazananlar));
+//console.log(YillaraGoreKazananlar(fifaData,Finaller,Yillar,Kazananlar));
 
 /*  Görev 6: 
 	Bir higher order fonksiyonu olan `OrtalamaGolSayisi` isimli fonksiyona aşağıdakileri uygulayın: 
@@ -118,14 +118,19 @@ console.log(YillaraGoreKazananlar(fifaData,Finaller,Yillar,Kazananlar));
 	💡 İPUCU: .reduce, .toFixed (dizilim(syntax) için MDN'ye bakın) kullan, ve bunu 2 adımda yapın) 
 	
 */
+//getFinals=(basedata)=>{}
+function OrtalamaGolSayisi(getFinals) {
 
-function OrtalamaGolSayisi(/* kodlar buraya */) {
+	const finalMaches = getFinals;
+	
+	const goalAvarage = (finalMaches.reduce((total, goal) => {
+		return total + goal["Away Team Goals"] + goal["Home Team Goals"]
+	}, 0) / finalMaches.length).toFixed(2);
 
-	/* kodlar buraya */
-
+	return goalAvarage;
 }
-
-
+console.log(OrtalamaGolSayisi(Finaller(fifaData)));
+//OrtalamaGolSayisi(Finaller(fifaData));
 
 /// EKSTRA ÇALIŞMALAR ///
 
